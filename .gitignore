@@ -1,0 +1,28 @@
+# Local-only / sensitive
+.env
+.env.*
+*.key
+*.pem
+*.crt
+secrets/
+**/wg*.conf
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+!example.tfvars
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Build artifacts (whatever language ends up here)
+node_modules/
+dist/
+build/
+target/
+__pycache__/
