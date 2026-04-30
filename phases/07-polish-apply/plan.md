@@ -31,7 +31,7 @@ A portfolio that someone can skim in 10 minutes and know:
 - [ ] What you'd do differently — the most underrated section.
 
 ### Blog posts (2–3, deep)
-- [ ] Pick topics from real surprises in `tasks/lessons.md`. Suggested:
+- [ ] Pick topics from real surprises in `lessons.md`. Suggested:
   - "Walking Kubernetes the Hard Way on a Pi + VPS — what actually clicked"
   - "SLOs for a side project: what's worth measuring when you have one user"
   - "Going from click-ops to Terraform + Argo CD: the parts the tutorials skip"
@@ -59,4 +59,4 @@ A portfolio that someone can skim in 10 minutes and know:
 
 ## Lessons
 
-Append § Phase 7 to `tasks/lessons.md` — final entry, including: where the program over-delivered, where it under-delivered, what you'd cut or expand if doing it again.
+End of phase: ensure `lessons.md` has the final retro — where the program over-delivered, where it under-delivered, what you'd cut or expand if doing it again.

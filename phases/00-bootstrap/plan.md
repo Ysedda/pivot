@@ -32,13 +32,17 @@ A `lab-bootstrap/` directory (top-level in this repo) containing idempotent Bash
 
 ## Checklist
 
-- [ ] Rent a Hetzner CX22 (or equivalent ~€5/mo VPS) for phase-0 work — a sacrificial box you can nuke and rebuild freely.
+- [x] Confirm SSH access to a sacrificial host (2nd OVH VPS used — prod VPS stays untouched, freedom to nuke/rebuild via OVH console).
 - [ ] (deferred — Pi unavailable) Flash Ubuntu Server 24.04 LTS on Pi.
 - [ ] (deferred — Pi unavailable) Reserve Pi IP on the router.
-- [ ] Write `lab-bootstrap/bootstrap-host.sh` — strict-mode Bash; user creation, SSH hardening, firewall, fail2ban, unattended-upgrades.
-- [ ] Test idempotency: run twice on the same host, second run must be a no-op (or only re-apply config drift).
+- [x] `lab-bootstrap/bootstrap-host.sh` — strict-mode Bash; deploy user + sudoers NOPASSWD + gh.keys → authorized_keys + sshd_config hardening via `00-hardening.conf`.
+- [x] Idempotency test for `bootstrap-host.sh` — second run shows only expected file rewrites, no new state. Drill 1 wall time: **3:04** (target <15 min).
+- [ ] `lab-bootstrap/bootstrap-firewall.sh` — nftables, default-deny inbound, allow port 22.
+- [ ] `lab-bootstrap/bootstrap-fail2ban.sh` — install + sshd jail (port 22 defaults).
+- [ ] `lab-bootstrap/bootstrap-unattended.sh` — unattended-upgrades + reboot policy decided.
+- [ ] `lab-bootstrap/bootstrap.sh` — top-level orchestrator: host → firewall → fail2ban → unattended.
 - [ ] Generate Wireguard keys (one keypair per host, store privately — *not* in this repo).
-- [ ] Write `lab-bootstrap/bootstrap-wireguard.sh` — installs wg, drops a templated config, enables `wg-quick@wg0` systemd unit (won't connect — peer absent — but service is installed and ready).
+- [ ] `lab-bootstrap/bootstrap-wireguard.sh` — installs wg, drops a templated config, enables `wg-quick@wg0` systemd unit (won't connect — peer absent — but service is installed and ready).
 - [ ] (deferred — needs Pi peer) Verify mesh: `ping` over the wg IP both ways; check `wg show` handshake on both ends.
 - [ ] Document the bootstrap procedure in `lab-bootstrap/README.md`. Note the Pi-deferred items explicitly.
 - [ ] **Incident drill:** revoke your own SSH key on the VPS. Recover via the provider's console rescue mode. Time it. (When Pi access returns, repeat as wg-mediated recovery.)
@@ -54,8 +58,8 @@ A `lab-bootstrap/` directory (top-level in this repo) containing idempotent Bash
 - Provision the VPS itself via `cloud-init` user-data so re-provisioning is one provider-API call away (you'll lean on this in phase 4).
 - Tiny health-check timer that writes `/var/log/lab-health.log` and gets scraped in phase 5.
 - Replace ufw with hand-written nftables rules — you'll need this fluency in phase 2.
-- **Convert `bootstrap-host.sh` to an Ansible playbook.** Pure preview of phase 3. The Bash-vs-Ansible diff side-by-side is one of the most useful learning artifacts you'll produce; commit both. Don't replace the Bash version — keep both, and note in `tasks/lessons.md` what each model gets right.
+- **Convert `bootstrap-host.sh` to an Ansible playbook.** Pure preview of phase 3. The Bash-vs-Ansible diff side-by-side is one of the most useful learning artifacts you'll produce; commit both. Don't replace the Bash version — keep both, and note in `lessons.md` what each model gets right.
 
 ## Lessons
 
-When this phase ends, write `tasks/lessons.md` § Phase 0 with the 3–5 things that bit you or surprised you.
+When this phase ends, ensure `lessons.md` has the 3–5 things that bit you or surprised you.

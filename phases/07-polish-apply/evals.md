@@ -50,4 +50,4 @@ The lab itself should be your whiteboard at this point. Be ready to walk an inte
 
 ## Retention check
 
-After landing the first role, schedule a 6-month retro: which phases held up, which faded, what you wish you'd skipped. Append to `tasks/lessons.md` — closes the program meaningfully.
+After landing the first role, schedule a 6-month retro: which phases held up, which faded, what you wish you'd skipped. Append to `lessons.md` — closes the program meaningfully.

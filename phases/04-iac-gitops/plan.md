@@ -79,4 +79,4 @@ Two top-level sub-directories in this repo (alongside `ansible/` from phase 3):
 
 ## Lessons
 
-Append § Phase 4 to `tasks/lessons.md`. Especially: where Argo's reconciliation surprised you, and where the TF→Ansible handoff felt awkward.
+End of phase: ensure `lessons.md` covers, especially: where Argo's reconciliation surprised you, and where the TF→Ansible handoff felt awkward.

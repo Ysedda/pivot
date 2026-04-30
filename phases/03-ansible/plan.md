@@ -29,7 +29,7 @@ An `ansible/` directory in this repo containing:
 ## Checklist
 
 ### Foundations
-- [ ] Read & summarize Ansible's execution model (control node → SSH → modules pushed and run on remote, fact gathering, idempotency contract). Notes in `tasks/lessons.md`.
+- [ ] Read & summarize Ansible's execution model (control node → SSH → modules pushed and run on remote, fact gathering, idempotency contract). Notes in `lessons.md`.
 - [ ] Ad-hoc commands fluent: `ansible all -m ping`, `-a "uptime"`, `-m apt -a "name=htop state=present" -b`. Use them daily during the phase.
 - [ ] Inventory: static `hosts.yml` + group_vars / host_vars precedence. Test that overrides resolve as you expect.
 
@@ -47,13 +47,13 @@ An `ansible/` directory in this repo containing:
 ### Variables, templates, vault
 - [ ] Templates with Jinja2: `wg0.conf`, Traefik dynamic config, service env files. Loops, conditionals, filters (`default()`, `mandatory`, `regex_replace`).
 - [ ] `ansible-vault create secrets.yml`, `ansible-vault edit`, encrypted vars in CI via `--vault-password-file`. Document the rotation story in the role README.
-- [ ] Variable precedence: write a 5-line cheat-sheet in `tasks/lessons.md`. Don't memorize the 22-level list — understand the broad order.
+- [ ] Variable precedence: write a 5-line cheat-sheet in `lessons.md`. Don't memorize the 22-level list — understand the broad order.
 
 ### Quality & testing
 - [ ] `ansible-lint` clean on every role. CI step in your existing pipeline.
 - [ ] `yamllint` clean across `ansible/`.
 - [ ] **Molecule** scenario for the `base-host` role: spin up a Docker container, converge, verify idempotency (second run must show 0 changed), destroy. CI-friendly.
-- [ ] Run with `--check --diff` and explain in `tasks/lessons.md` what each shows you that the actual apply doesn't.
+- [ ] Run with `--check --diff` and explain in `lessons.md` what each shows you that the actual apply doesn't.
 
 ### Dynamic inventory (preview of phase 4)
 - [ ] Write a small dynamic inventory script in **Python** (use the Python drip — this is the canonical Ansible+Python interface) that returns hosts based on a static JSON file. Run a real playbook against it. Phase 4 will plug Terraform outputs into this slot.
@@ -73,9 +73,9 @@ An `ansible/` directory in this repo containing:
 
 - AWX (Ansible Tower OSS) on the cluster. Schedule a playbook from a UI. Useful exposure for SSII / consulting roles.
 - Convert your nftables config (phase 1) to a templated role that generates rules from a list-of-services variable.
-- Read one real-world role from a major company on Galaxy (e.g., `geerlingguy.docker`). Note the patterns that surprised you in `tasks/lessons.md`.
+- Read one real-world role from a major company on Galaxy (e.g., `geerlingguy.docker`). Note the patterns that surprised you in `lessons.md`.
 - **Go drip stretch:** write a small custom Ansible module *in Go* (yes, it's possible — modules just need to read JSON args from stdin and emit JSON). Bonus: compare to writing the same module in Python. Heavy Go-day exercise.
 
 ## Lessons
 
-End of phase: append § Phase 3 to `tasks/lessons.md`. Especially: the Bash-vs-Ansible diff for the bootstrap role, and where `--check` / `--diff` lied to you (it does, sometimes — that's worth writing down).
+End of phase: ensure `lessons.md` captures, especially: the Bash-vs-Ansible diff for the bootstrap role, and where `--check` / `--diff` lied to you (it does, sometimes — worth writing down).

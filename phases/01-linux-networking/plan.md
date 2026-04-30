@@ -25,7 +25,7 @@ Suggested service stack: **Gitea** + **Vaultwarden** + a tiny **status page** (c
 ### Linux primitives
 - [ ] Write a real systemd unit (not `nohup`) for a long-running script. Add `Restart=`, `WatchdogSec=`, `journalctl -u` cleanly.
 - [ ] Build a "container from scratch": `unshare` for namespaces + `cgcreate` for cgroups + a chrooted rootfs from `debootstrap`. Run a process, prove it's isolated.
-- [ ] Read & summarize: `man namespaces(7)`, `man cgroups(7)`. One paragraph each in `tasks/lessons.md`.
+- [ ] Read & summarize: `man namespaces(7)`, `man cgroups(7)`. One paragraph each in `lessons.md`.
 
 ### Firewall & networking
 - [ ] Replace ufw with hand-written **nftables** rules. Inbound: SSH only from wg subnet, HTTP/HTTPS from internet on VPS, nothing public on Pi.
@@ -44,7 +44,7 @@ Suggested service stack: **Gitea** + **Vaultwarden** + a tiny **status page** (c
 - [ ] Set up automated backups (rsync or restic) of service data to the VPS or a cheap object store. Verify a restore.
 
 ### Drills
-- [ ] **Incident drill:** intentionally misconfigure DNS or break a cert. Debug end-to-end without reverting. Write a postmortem in `tasks/lessons.md`.
+- [ ] **Incident drill:** intentionally misconfigure DNS or break a cert. Debug end-to-end without reverting. Write a postmortem in `lessons.md`.
 
 ## Resources
 
@@ -61,4 +61,4 @@ Suggested service stack: **Gitea** + **Vaultwarden** + a tiny **status page** (c
 
 ## Lessons
 
-End of phase: append § Phase 1 to `tasks/lessons.md`.
+End of phase: ensure `lessons.md` has all the major surprises captured.

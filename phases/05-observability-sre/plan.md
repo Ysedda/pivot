@@ -14,7 +14,7 @@ SRE without observability is just sysadmin. The hands-on stack experience plus t
 
 ## Deliverable
 
-A real dashboard, a real SLO, and a real postmortem — all linked from `tasks/lessons.md` § Phase 5.
+A real dashboard, a real SLO, and a real postmortem — all linked from `lessons.md` § Phase 5.
 
 Concretely:
 - **LGTM** stack on cluster: Prometheus, Loki, Tempo, Grafana, with Promtail/Alloy and OTel collector.
@@ -49,7 +49,7 @@ Concretely:
 
 ### SRE book reading
 - [ ] *Site Reliability Engineering* — chapters 1–6 (intro, embracing risk, SLOs, eliminating toil, monitoring, automation). Skim the rest.
-- [ ] *Site Reliability Workbook* — chapter on SLO engineering, chapter on alerting on SLOs. Take notes in `tasks/lessons.md`.
+- [ ] *Site Reliability Workbook* — chapter on SLO engineering, chapter on alerting on SLOs. Take notes in `lessons.md`.
 
 ### Game day
 - [ ] Plan a failure: e.g., kill the DB pod for a service that has a PVC. Decide what should happen.
@@ -73,4 +73,4 @@ Concretely:
 
 ## Lessons
 
-Append § Phase 5 to `tasks/lessons.md`. The postmortem itself is the headline artifact for interviews — make it good.
+End of phase: ensure `lessons.md` is filled in. The postmortem itself is the headline artifact for interviews — make it good.

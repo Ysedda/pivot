@@ -28,7 +28,7 @@ Two-node cluster spanning Pi + VPS over Wireguard, with:
 ## Checklist
 
 ### Read first, install second
-- [ ] Read about each control-plane component before installing anything: apiserver, etcd, scheduler, controller-manager, kubelet, kube-proxy. One paragraph per component in `tasks/lessons.md`.
+- [ ] Read about each control-plane component before installing anything: apiserver, etcd, scheduler, controller-manager, kubelet, kube-proxy. One paragraph per component in `lessons.md`.
 - [ ] Understand the kubelet–CRI–container-runtime path. Know what containerd actually does.
 
 ### Kubernetes the Hard Way
@@ -87,4 +87,4 @@ Two-node cluster spanning Pi + VPS over Wireguard, with:
 
 ## Lessons
 
-Append § Phase 2 to `tasks/lessons.md`. Be honest about what you didn't understand the first time.
+By end of phase, ensure `lessons.md` is honest about what you didn't understand the first time.

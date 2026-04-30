@@ -20,7 +20,7 @@ By now you've felt the difference between phases 2 (infra/K8s-heavy), 5 (reliabi
 - **Reliability SRE** — SLOs, error budgets, incident response, perf debugging at the app boundary.
 - **Platform / DevEx** — internal platforms, golden paths, CI/CD, self-service infra for app teams.
 
-Write the choice and *why* into `tasks/lessons.md` § Phase 6. Be specific.
+Write the choice and *why* into `lessons.md` § Phase 6. Be specific.
 
 ## Capstone project (pick one based on flavor)
 
@@ -114,4 +114,4 @@ Total time merge → fully-promoted production: **<15 min**. Zero manual `kubect
 
 ## Lessons
 
-Append § Phase 6 to `tasks/lessons.md`. Capstone retrospective belongs here.
+End of phase: ensure `lessons.md` has the capstone retrospective.

@@ -29,41 +29,41 @@ Total: ~31 weeks, ~370 hours. Slip is expected — track it explicitly in `tasks
 
 ## Phase summaries
 
-### Phase 0 — Lab bootstrap (`phases/00-bootstrap.md`)
+### Phase 0 — Lab bootstrap (`phases/00-bootstrap/plan.md`)
 
-Pi + VPS hardened and Wireguarded. Idempotent Bash bootstrap so any host can be nuked and rebuilt in <15 min.
+VPS hardened end-to-end via idempotent Bash split into focused scripts (host, firewall, fail2ban, unattended-upgrades, wg, plus a top-level orchestrator). Any host can be nuked and rebuilt in <15 min. Pi + Wireguard mesh deferred until Pi access returns.
 
-### Phase 1 — Linux & networking (`phases/01-linux-networking.md`)
+### Phase 1 — Linux & networking (`phases/01-linux-networking/plan.md`)
 
 Prove "decent at networking" is real: nftables, systemd unit writing, namespaces & cgroups (container-from-scratch), own DNS + own CA, reverse proxy with TLS via Let's Encrypt DNS-01, debug with `tcpdump` / `dig` / `ss`. Self-host 2–3 services on Pi exposed via VPS over Wireguard.
 
-### Phase 2 — Kubernetes deep dive (`phases/02-kubernetes.md`)
+### Phase 2 — Kubernetes deep dive (`phases/02-kubernetes/plan.md`)
 
 Walk *Kubernetes the Hard Way* against the lab, then redo with k3s for daily use. Cilium CNI, Traefik ingress, cert-manager. Migrate phase-1 services as Helm releases. Sit the **CKA** exam at the end as a forcing function.
 
-### Phase 3 — Configuration management with Ansible (`phases/03-ansible.md`)
+### Phase 3 — Configuration management with Ansible (`phases/03-ansible/plan.md`)
 
 The most directly French-market-aligned phase. Manage the lab declaratively via Ansible: roles, inventory, `ansible-vault`, Molecule-tested. Convert the phase-0 Bash bootstrap to a `base-host` role; keep both side-by-side as a learning artifact. Lab note: the temporary VPS expires at the start of this phase — rent a small Hetzner box click-ops style (you'll automate it away in phase 4).
 
-### Phase 4 — IaC + GitOps (`phases/04-iac-gitops.md`)
+### Phase 4 — IaC + GitOps (`phases/04-iac-gitops/plan.md`)
 
 Terraform provisions infra (replacing the click-opped Hetzner box from phase 3 with a TF-managed one), Ansible from phase 3 configures it, Argo CD reconciles app state on the cluster. The canonical French-market trifecta. Hand-written Helm chart per service. Burn the lab down and rebuild from `git clone` + three commands.
 
-### Phase 5 — Observability + SRE practices (`phases/05-observability-sre.md`)
+### Phase 5 — Observability + SRE practices (`phases/05-observability-sre/plan.md`)
 
 Self-install LGTM stack. Instrument an app with OpenTelemetry (preferably a fresh **Go** service, not the TS one). Define SLIs/SLOs and implement multi-window burn-rate alerts. Run a game day, write the postmortem. Read the Google SRE book + workbook in parallel.
 
-### Phase 6 — Specialize + interview prep (`phases/06-specialize.md`)
+### Phase 6 — Specialize + interview prep (`phases/06-specialize/plan.md`)
 
 Pick a flavor (Infra / Reliability / Platform-DevEx) based on what felt best in phases 2–5. Capstone project in that flavor — **shipped in Go regardless of flavor**. The Platform flavor is the densest: a full **release-engineering capstone** (feature flag service in Go, Argo Rollouts canary + blue-green, SLO-driven auto-rollback, release automation, enforced trunk-based branching). In parallel: weekly system design + weekly troubleshooting drill.
 
-### Phase 7 — Polish + apply (`phases/07-polish-apply.md`)
+### Phase 7 — Polish + apply (`phases/07-polish-apply/plan.md`)
 
 Portfolio-quality READMEs, 2–3 blog posts deep enough to prove understanding, then apply.
 
 ## Cross-cutting habits
 
-- **`tasks/lessons.md`** — append per phase. What surprised me, what bit me, what I'd do differently. Highest interview signal in the whole repo.
+- **`phases/0X-<phase>/lessons.md`** — one file per phase, colocated with the phase's plan and evals. Append continuously as checkboxes tick. What surprised me, what bit me, what I'd do differently. Highest interview signal in the whole repo. See `phases/README.md` for format guide and `tasks/tips.md` § Resources for reading lists.
 - **One incident drill per phase** — intentional breakage, timed TTD/TTM, written postmortem.
 - **Language drip — 15% Go + 10% Python per phase.** Go is leaned into harder than Python: by phase 6 you should be writing controllers, CLIs, and small services in Go without reaching for TS as a fallback. Python is leverage for Ansible (phase 3) and general automation. Go is the lingua franca of the K8s ecosystem and SRE tooling — the more comfortable you are reading and writing it by interview season, the better. The phase 6 capstone ships in Go regardless of flavor.
 - **Game day per phase** — pick something to break, time the recovery.

@@ -4,18 +4,22 @@ The single source of truth for "what's left". Detailed context lives in `phases/
 
 ## Phase 0 — Lab bootstrap (target: 2026-05-05)
 
-- [ ] Confirm SSH access to the 2nd OVH VPS (the sacrificial one — prod stays untouched).
+- [X] Confirm SSH access to the 2nd OVH VPS (the sacrificial one — prod stays untouched).
 - [ ] (deferred — Pi unavailable) Flash Ubuntu Server 24.04 LTS to Pi.
 - [ ] (deferred — Pi unavailable) Reserve Pi IP on router.
-- [ ] `lab-bootstrap/bootstrap-host.sh` (idempotent: user, SSH hardening, firewall, fail2ban, unattended-upgrades).
-- [ ] Idempotency test (run twice, second is a no-op).
+- [X] `lab-bootstrap/bootstrap-host.sh` (idempotent: deploy user, sudoers NOPASSWD, gh.keys → authorized_keys, sshd_config hardening via `00-hardening.conf`).
+- [X] Idempotency test for `bootstrap-host.sh` (run twice — second produces only expected file rewrites, no new state).
+- [ ] `lab-bootstrap/bootstrap-firewall.sh` (nftables — default-deny inbound, allow port 22).
+- [ ] `lab-bootstrap/bootstrap-fail2ban.sh` (install + sshd jail).
+- [ ] `lab-bootstrap/bootstrap-unattended.sh` (unattended-upgrades + reboot policy decided).
+- [ ] `lab-bootstrap/bootstrap.sh` (top-level orchestrator: host → firewall → fail2ban → unattended).
 - [ ] Generate Wireguard keys (kept out of repo).
 - [ ] `lab-bootstrap/bootstrap-wireguard.sh` (install, templated config, systemd unit — service ready, mesh inactive).
 - [ ] (deferred — needs Pi peer) Verify mesh: ping both ways, `wg show` handshake.
 - [ ] `lab-bootstrap/README.md` — bootstrap-from-zero procedure, with deferred items called out.
 - [ ] **Drill:** revoke own SSH key, recover via provider console rescue, time it. (Re-do as wg-mediated recovery when Pi access returns.)
-- [ ] **Pass Phase 0 exit checkpoints ([`evals/00-bootstrap.md`](../evals/00-bootstrap.md)).**
-- [ ] Write `tasks/lessons.md` § Phase 0.
+- [ ] **Pass Phase 0 exit checkpoints ([`phases/00-bootstrap/evals.md`](../phases/00-bootstrap/evals.md)).**
+- [ ] Append lessons in `phases/00-bootstrap/lessons.md`.
 
 ## Phase 1 — Linux & networking (target: 2026-06-02)
 
@@ -33,8 +37,8 @@ The single source of truth for "what's left". Detailed context lives in `phases/
 - [ ] Reverse proxy on VPS forwards to Pi over wg with TLS termination at VPS.
 - [ ] Backups (rsync/restic), restore verified.
 - [ ] **Drill:** misconfigure DNS or break a cert, debug end-to-end without reverting.
-- [ ] **Pass Phase 1 exit checkpoints ([`evals/01-linux-networking.md`](../evals/01-linux-networking.md)).**
-- [ ] Write `tasks/lessons.md` § Phase 1.
+- [ ] **Pass Phase 1 exit checkpoints ([`phases/01-linux-networking/evals.md`](../phases/01-linux-networking/evals.md)).**
+- [ ] Append lessons in `phases/01-linux-networking/lessons.md`.
 
 ## Phase 2 — Kubernetes deep dive (target: 2026-07-14)
 
@@ -60,8 +64,8 @@ The single source of truth for "what's left". Detailed context lives in `phases/
 - [ ] killercoda / killer.sh: 90%+ on timed mocks.
 - [ ] **Sit CKA.**
 - [ ] **Drill:** kill etcd (snapshot first!), recover, time it.
-- [ ] **Pass Phase 2 exit checkpoints ([`evals/02-kubernetes.md`](../evals/02-kubernetes.md)).**
-- [ ] Write `tasks/lessons.md` § Phase 2.
+- [ ] **Pass Phase 2 exit checkpoints ([`phases/02-kubernetes/evals.md`](../phases/02-kubernetes/evals.md)).**
+- [ ] Append lessons in `phases/02-kubernetes/lessons.md`.
 
 ## Phase 3 — Configuration management with Ansible (target: 2026-08-11)
 
@@ -77,14 +81,14 @@ The single source of truth for "what's left". Detailed context lives in `phases/
 - [ ] `k3s` install role, idempotent.
 - [ ] Jinja2 templates with loops / conditionals / filters.
 - [ ] `ansible-vault create` + edit + `--vault-password-file` in CI mode. Rotation story documented.
-- [ ] Variable-precedence cheat-sheet in `tasks/lessons.md`.
+- [ ] Variable-precedence cheat-sheet in `phases/03-ansible/lessons.md`.
 - [ ] `ansible-lint` clean across all roles.
 - [ ] `yamllint` clean across `ansible/`.
 - [ ] Molecule scenario for `base-host` role: converge → idempotency check → destroy.
 - [ ] Dynamic inventory script in **Python** (Python drip), reads from JSON file.
 - [ ] **Incident drill:** non-idempotent task introduced (`command:` w/ no guard), run twice, observe drift, refactor, postmortem.
-- [ ] **Pass Phase 3 exit checkpoints ([`evals/03-ansible.md`](../evals/03-ansible.md)).**
-- [ ] Write `tasks/lessons.md` § Phase 3.
+- [ ] **Pass Phase 3 exit checkpoints ([`phases/03-ansible/evals.md`](../phases/03-ansible/evals.md)).**
+- [ ] Append lessons in `phases/03-ansible/lessons.md`.
 
 ## Phase 4 — IaC + GitOps (target: 2026-09-08)
 
@@ -109,8 +113,8 @@ The single source of truth for "what's left". Detailed context lives in `phases/
 - [ ] **Go drip (recommended):** small custom Terraform provider in Go using the Plugin Framework. Suggested scope: a provider for a tiny lab inventory JSON service.
 - [ ] **Drill:** delete a Deployment by hand, watch Argo restore it.
 - [ ] **Disaster drill:** delete VPS in provider console, rebuild via `terraform apply` → `ansible-playbook` → Argo sync end-to-end.
-- [ ] **Pass Phase 4 exit checkpoints ([`evals/04-iac-gitops.md`](../evals/04-iac-gitops.md)).**
-- [ ] Write `tasks/lessons.md` § Phase 4.
+- [ ] **Pass Phase 4 exit checkpoints ([`phases/04-iac-gitops/evals.md`](../phases/04-iac-gitops/evals.md)).**
+- [ ] Append lessons in `phases/04-iac-gitops/lessons.md`.
 
 ## Phase 5 — Observability + SRE practices (target: 2026-10-13)
 
@@ -134,21 +138,21 @@ The single source of truth for "what's left". Detailed context lives in `phases/
 - [ ] Record TTD, TTM, TTR.
 - [ ] Postmortem in `tasks/postmortems/<date>-<title>.md`.
 - [ ] At least 2 action items filed and closed.
-- [ ] **Pass Phase 5 exit checkpoints ([`evals/05-observability-sre.md`](../evals/05-observability-sre.md)).**
-- [ ] Write `tasks/lessons.md` § Phase 5.
+- [ ] **Pass Phase 5 exit checkpoints ([`phases/05-observability-sre/evals.md`](../phases/05-observability-sre/evals.md)).**
+- [ ] Append lessons in `phases/05-observability-sre/lessons.md`.
 
 ## Phase 6 — Specialize + interview prep (target: 2026-11-17)
 
 - [ ] Pick flavor (Infra / Reliability / Platform), write reasoning in lessons.
-- [ ] Capstone — **all flavors ship in Go** (see `phases/06-specialize.md`).
+- [ ] Capstone — **all flavors ship in Go** (see `phases/06-specialize/plan.md`).
 - [ ] Weekly system design (5 total) in `tasks/system-design/`.
 - [ ] Weekly troubleshooting drill (5 total) in `tasks/troubleshooting/`.
 - [ ] 5 STAR behavioral stories drafted and rehearsed.
 - [ ] CV refreshed for SRE pivot.
 - [ ] LinkedIn updated.
 - [ ] Target list: 10–15 companies with notes on their SRE org.
-- [ ] **Pass Phase 6 exit checkpoints ([`evals/06-specialize.md`](../evals/06-specialize.md)).**
-- [ ] Write `tasks/lessons.md` § Phase 6.
+- [ ] **Pass Phase 6 exit checkpoints ([`phases/06-specialize/evals.md`](../phases/06-specialize/evals.md)).**
+- [ ] Append lessons in `phases/06-specialize/lessons.md`.
 
 ## Phase 7 — Polish + apply (target: 2026-12-01)
 
@@ -160,8 +164,8 @@ The single source of truth for "what's left". Detailed context lives in `phases/
 - [ ] LinkedIn headline rewrite.
 - [ ] First applications sent.
 - [ ] Per application: customized CV + cover letter linked to specific deliverable.
-- [ ] **Pass Phase 7 exit checkpoints ([`evals/07-polish-apply.md`](../evals/07-polish-apply.md)).**
-- [ ] Write `tasks/lessons.md` § Phase 7 (final retrospective).
+- [ ] **Pass Phase 7 exit checkpoints ([`phases/07-polish-apply/evals.md`](../phases/07-polish-apply/evals.md)).**
+- [ ] Append lessons in `phases/07-polish-apply/lessons.md` (final retrospective).
 
 ---
 
