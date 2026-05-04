@@ -46,7 +46,7 @@ If you've shipped phase 7 and not got a single first-round interview within 4 we
 
 ## Whiteboard
 
-The lab itself should be your whiteboard at this point. Be ready to walk an interviewer through any one of: phase 0 bootstrap, phase 2 CNI, phase 3 Ansible role design, phase 5 SLO, in <10 min, on a video call without screen-share. (Practice this. It's the most under-prepared interview moment.)
+The lab itself should be your whiteboard at this point. Be ready to walk an interviewer through any one of: phase 0 bootstrap, phase 4 CNI, phase 2 Ansible role design, phase 5 SLO, in <10 min, on a video call without screen-share. (Practice this. It's the most under-prepared interview moment.)
 
 ## Retention check
 

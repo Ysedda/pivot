@@ -25,9 +25,9 @@ Make a request from your laptop to `https://<service>.<your-domain>`. Capture an
 
 1. DNS query on your laptop — `dig` output showing the resolved IP.
 2. TLS handshake at the VPS — `tcpdump -i eth0 'port 443'` showing ClientHello with SNI.
-3. Forwarded request entering the wg tunnel on VPS — `tcpdump -i wg0`.
-4. Same request exiting wg on the Pi — `tcpdump -i wg0`.
-5. Final request hitting the service — `tcpdump -i docker0` (or whichever interface the service bridges to).
+3. Reverse proxy decision — proxy logs showing the route match, upstream selected.
+4. Backend request — `tcpdump` on the loopback or service interface showing the proxy → service hop.
+5. Response leaving the VPS — TLS records flowing back over `eth0`.
 
 **Pass:** all five captures saved + a short README explaining what each shows.
 
@@ -52,16 +52,16 @@ Claude (or you) breaks one of:
 
 **Pass:** root cause identified and fix applied in <30 min. Postmortem in `tasks/postmortems/`.
 
-## Break-fix 2 — Pi service unreachable from internet (target: 30 min)
+## Break-fix 2 — Service unreachable (target: 30 min)
 
 Claude breaks one of:
-- nftables rule dropping forwarded traffic.
-- VPS reverse proxy backend pointing at wrong wg IP.
-- Pi service crashed (systemd failed); reverse proxy returns 502.
+- nftables rule dropping inbound traffic to HTTPS.
+- Reverse proxy backend pointing at wrong upstream port.
+- Service crashed (systemd failed); reverse proxy returns 502.
 - DNS A record pointed at old IP.
-- wg session dead (key rotated on one side).
+- Reverse proxy config has a typo causing it to fail-load with the previous config still serving (silent stale state).
 
-**Pass:** service restored in <30 min using `dig` / `curl -v` / `tcpdump` / `journalctl` only.
+**Pass:** service restored in <30 min using `dig` / `curl -v` / `tcpdump` / `journalctl` / `systemctl status` only.
 
 ## Whiteboard 1 — Full packet path (target: 10 min, no notes)
 
@@ -69,9 +69,8 @@ Trace a request from your laptop to `https://gitea.<domain>`:
 - DNS resolution path (recursive resolvers, root, TLD, your authoritative).
 - TCP three-way handshake target.
 - TLS handshake — what does the VPS present, why does the laptop trust it?
-- Reverse proxy decision — how does it know to forward to Pi?
-- wg encapsulation — what's the outer packet look like vs the inner?
-- Final delivery on Pi.
+- Reverse proxy decision — how does it route by hostname (SNI / Host header)?
+- Backend service — what's the proxy → service hop look like, and why doesn't it use TLS internally (or, if it does, what changes)?
 
 ## Whiteboard 2 — Namespace isolation (target: 5 min, no notes)
 
@@ -79,7 +78,7 @@ Explain the difference between net, mount, pid, user, uts, ipc namespaces. Which
 
 ## External attestation
 
-None — phase 2 is where the first big external (CKA) lands.
+None — phase 4 is where the first big external (CKA) lands.
 
 ## Retention check (schedule for 2026-07-14)
 

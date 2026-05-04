@@ -11,13 +11,11 @@
    - SSH key-only auth (password login disabled).
    - Firewall active, only allowed ports open.
    - fail2ban running.
-   - `wg-quick@wg0` service installed and configured (mesh activation deferred — no Pi peer yet).
+   - unattended-upgrades enabled and `unattended-upgrades --dry-run --debug` exits clean.
 
 **Pass:** all four post-conditions within 15 min wall time, zero script edits after `ssh-copy-id`.
 **Partial:** 15–25 min, or one post-condition needed hand-holding.
 **Fail:** >25 min, or scripts edited mid-run.
-
-> **When the Pi returns:** re-run this drill with the mesh activation as a fifth post-condition (`ping` over wg IP succeeds, `wg show` shows handshake).
 
 ## Drill 2 — Idempotency (target: 5 min)
 
@@ -35,12 +33,10 @@ Have Claude (or a colleague) revoke your SSH key on the VPS. Don't peek at what 
 
 > **Variants Claude may pick from:** delete `~/.ssh/authorized_keys`, set `PasswordAuthentication no` *and* remove keys, modify `/etc/ssh/sshd_config` and HUP sshd, change AllowUsers.
 
-> **When the Pi returns:** repeat this drill with wg-mediated recovery as the only allowed path (no console rescue). Tests a different recovery muscle.
-
 ## Whiteboard — explain cold, no notes (target: 5 min)
 
 1. `set -euo pipefail` — what does each flag do, what's the failure mode each prevents?
-2. How does the wg tunnel come up at boot? Which systemd unit? Where does the key exchange happen?
+2. What does unattended-upgrades actually upgrade by default, and what's the reboot policy you chose? When would you not auto-reboot?
 3. What's the threat model your firewall protects against? Be specific — "hackers" doesn't pass.
 
 Write answers in `tasks/whiteboards/00/answers.md` if no human is around to grade.

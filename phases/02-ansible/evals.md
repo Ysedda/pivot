@@ -1,4 +1,4 @@
-# Phase 3 — Evals
+# Phase 2 — Evals
 
 **Passing bar:** Drills 1–3 pass + at least one break-fix passes + both whiteboards delivered. ~5 hours of eval time.
 
@@ -52,6 +52,6 @@ What lives where, why, and how do you import each? Where does Galaxy fit? When w
 
 None this phase, but the side-by-side `bootstrap.sh` ↔ `base-host` role diff is portfolio gold for phase 7.
 
-## Retention check (schedule for 2026-09-22)
+## Retention check (schedule for 2026-08-11)
 
 Redo Drill 2 cold against a different Bash script. Ansible's idempotency model atrophies fast if you stop using it daily.

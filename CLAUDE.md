@@ -18,14 +18,14 @@ A self-paced 31-week DevOps / SRE pivot program (started ~2026-04-29, target end
 - **Cloud / IaC:** click-ops or simple Terraform modules. No multi-env experience.
 - **Networking:** decent on subnets / DNS / TLS. Not yet strong on firewalls, VPN, `tcpdump` in anger, CNI internals.
 - **Linux / Bash:** production exposure, but not fluent in idempotent Bash or custom systemd units.
-- **Tooling languages:** TS / Node only. **No Go, Python, or strong Bash yet — single biggest gap for SRE roles.** Phase plans bake in a 15% Go + 10% Python drip per phase. Go is the heavier emphasis: by phase 6 the capstone ships in Go regardless of flavor (controller / SLO agent / CLI), and from phase 2 onwards every phase has a concrete Go task. Python is leverage for Ansible (phase 3) and general automation.
-- **Target market shape:** France-leaning. Ansible, Terraform, GitLab CI, OVH/Scaleway, Python all show up disproportionately in French DevOps job ads vs. the US cloud-native bubble. The program reflects that — phase 3 is a dedicated Ansible phase, phase 4 is Terraform + GitOps. Go is still emphasized despite being lighter on the French market because the K8s ecosystem and SRE tooling expect it.
+- **Tooling languages:** TS / Node only. **No Go, Python, or strong Bash yet — single biggest gap for SRE roles.** Phase plans bake in a 15% Go + 10% Python drip per phase. Go is the heavier emphasis: by phase 6 the capstone ships in Go regardless of flavor (controller / SLO agent / CLI), and from phase 2 onwards every phase has a concrete Go task. Python is leverage for Ansible (phase 2) and general automation.
+- **Target market shape:** France-leaning. Ansible, Terraform, GitLab CI, OVH/Scaleway, Python all show up disproportionately in French DevOps job ads vs. the US cloud-native bubble. The program reflects that — phase 2 is a dedicated Ansible phase, phase 3 is Terraform, phase 4 is K8s + GitOps + release flow. Go is still emphasized despite being lighter on the French market because the K8s ecosystem and SRE tooling expect it.
 
 ## Lab constraints
 
-- **Raspberry Pi 4/5** — owned, but **currently no physical access**. Phase 0 runs VPS-only. Wireguard install + key generation still happen; mesh activation is deferred until Pi access returns (or a second cheap VPS is rented to maintain the 2-node story for phase 2's cluster work).
-- **Two OVH VPSes** available until ~2026-07: one is prod (don't touch), the other is a **sacrificial box for phase 0** that can be nuked and rebuilt freely via OVH console. The sacrificial one carries the lab through phases 0–2.
-- **At the start of phase 3 (Ansible), I rent a Hetzner CX22** (~€5/mo) as the phase-3 host (the click-ops pain that phase 4 automates). Phase 4 (Terraform + GitOps) replaces it with a TF-provisioned VPS.
+- **Spare 16GB-RAM PC running Proxmox VE** from phase 2 onwards — lab grows from "single VPS" to "real multi-host with VMs." Plugged in 24/7 but no inbound exposure — accessed from work via Wireguard hub-and-spoke through the OVH VPS. **Raspberry Pi 4/5** owned but currently no physical access; dropped from the program (Proxmox replaces it).
+- **Two OVH VPSes** available until ~2026-07: one is prod (don't touch), the other is a **sacrificial box** that can be nuked and rebuilt freely via OVH console. Sacrificial role: phase 0 hardened-VPS target, phase 1 services host, phase 2+ Wireguard hub.
+- **Post-July 2026 lab transition.** OVH VPSes expire ~2026-07. Plan a successor cloud VPS (cheapest available — OVH renewal, Scaleway, Hetzner cax11) for the WG hub role only — single port, single role.
 
 ## How to find work
 

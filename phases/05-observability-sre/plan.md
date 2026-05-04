@@ -27,15 +27,15 @@ Concretely:
 ## Checklist
 
 ### Stack on cluster
-- [ ] Prometheus + Alertmanager via kube-prometheus-stack Helm chart. Persistent storage on Longhorn (from phase 2).
+- [ ] Prometheus + Alertmanager via kube-prometheus-stack Helm chart. Persistent storage on Longhorn (from phase 4).
 - [ ] Grafana: connect Prometheus, Loki, Tempo as data sources. Pin the version, not "latest".
 - [ ] Loki + Promtail (or Grafana Alloy) for logs.
 - [ ] Tempo for traces. Sample at 100% in lab; learn the levers.
 - [ ] OpenTelemetry Collector as a DaemonSet receiving from apps, fanning out to Prometheus / Loki / Tempo.
-- [ ] Move heavy components (Prometheus, Loki) to the VPS node via nodeSelector — Pi memory is the constraint.
+- [ ] Pin heavy components (Prometheus, Loki) to a specific Proxmox VM via nodeSelector — practice the resource-budget exercise even when you're not memory-starved.
 
 ### Instrument an app
-- [ ] Pick one of your phase-1 services, **or — recommended for the Go drip — write a small fresh service in Go** and instrument that. Go's OTel ecosystem is more idiomatic and you'll learn more.
+- [ ] Pick one of your lab services (the ones you've been carrying since phase 1, now running on the cluster as Helm charts), **or — recommended for the Go drip — write a small fresh service in Go** and instrument that. Go's OTel ecosystem is more idiomatic and you'll learn more.
 - [ ] If TS: add `@opentelemetry/sdk-node` + auto-instrumentations (HTTP, Prisma if applicable). If Go: `go.opentelemetry.io/otel` + the relevant instrumentation libs.
 - [ ] Add structured JSON logs with trace_id correlation. Verify in Loki you can jump from a log line to the trace.
 - [ ] Add custom RED metrics (Rate, Errors, Duration) at the handler level.

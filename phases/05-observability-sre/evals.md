@@ -33,7 +33,7 @@ This is the headline eval of phase 5. Claude (or a colleague) injects, without w
 
 - DB pod kill on a service with PVC.
 - Disk fills (write a 9 GB file).
-- Network partition between Pi and VPS (drop wg traffic for 60s, restore).
+- Network partition between Proxmox VMs (drop traffic on a node interface for 60s, restore).
 - Infinite loop in app code via a deployed broken image.
 - Certificate expired (rewind clock or use a pre-expired cert).
 - Critical Prometheus rule deleted (silent failure mode — should you have detected this?).

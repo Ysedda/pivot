@@ -185,13 +185,13 @@ _(append as discovered)_
 
 ## Kubernetes
 
-_(append from phase 2)_
+_(append from phase 4)_
 
 ---
 
 ## Terraform / Ansible
 
-_(append from phases 3–4)_
+_(append from phases 2–3)_
 
 ---
 
@@ -220,7 +220,7 @@ Curated reading lists / tools per skill area. High-signal only. Add to this list
 - **nftables wiki** (`wiki.nftables.org`). Direct from the project — better than third-party tutorials.
 - **WireGuard quickstart** (`wireguard.com/quickstart`). Short, official.
 
-### Kubernetes (phase 2 deep dive)
+### Kubernetes (phase 4 deep dive)
 
 - ***Kubernetes the Hard Way* (Kelsey Hightower).** Free on GitHub. The phase-2 backbone.
 - **Kubernetes docs — Concepts section** (`kubernetes.io/docs/concepts/`). Better than every third-party tutorial.
@@ -234,7 +234,7 @@ Curated reading lists / tools per skill area. High-signal only. Add to this list
 - **Effective Go** (`go.dev/doc/effective_go`). Official idiomatic patterns. Re-read every couple of months.
 - **The Kubebuilder Book** (`book.kubebuilder.io`). Phase 6 infra-flavor capstone reference.
 
-### Python (10% drip from phase 3)
+### Python (10% drip from phase 2)
 
 - ***Python for DevOps* (O'Reilly — Gift, Behrman, Deza, Gheorghiu).** Pragmatic, ops-focused.
 - **`ansible.builtin` module docs.** The standard library you'll actually use in phase 3.

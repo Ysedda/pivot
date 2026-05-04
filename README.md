@@ -1,6 +1,6 @@
 # DevOps / SRE Pivot
 
-A self-paced 31-week program toward an SRE / Platform Engineer role, built around a home lab (Raspberry Pi 4/5 + lab VPS). Named "pivot" because that's the actual goal — career pivot from backend to SRE / Platform.
+A self-paced 30-week program toward an SRE / Platform Engineer role, built around a home lab (lab VPS + Proxmox box). Named "pivot" because that's the actual goal — career pivot from backend to SRE / Platform.
 
 ## What this is
 
@@ -19,7 +19,7 @@ I'm a backend engineer (TS/Node, ~4 YoE) pivoting toward SRE / Platform. This re
 1. **Don't advance phases until the eval passing bar is met** — see `phases/0X-<phase>/evals.md`. Deliverable shipped + drills passed + whiteboard delivered + external attestation (where applicable).
 2. Append entries to `phases/0X-<phase>/lessons.md` continuously, not at end of phase.
 3. One incident drill per phase: break something on purpose, time TTD/TTM, write a postmortem in `tasks/postmortems/`.
-4. ~15% Go + ~10% Python per phase. Go is the heavier emphasis — capstone (phase 6) ships in Go regardless of flavor. Python is leverage for Ansible (phase 3) and general automation.
+4. ~15% Go + ~10% Python per phase. Go is the heavier emphasis — capstone (phase 6) ships in Go regardless of flavor. Python is leverage for Ansible (phase 2) and general automation.
 5. Schedule retention checks at the end of each phase (calendar reminders 6 weeks out — the phase's eval doc names the drill to repeat).
 
 ## Current phase

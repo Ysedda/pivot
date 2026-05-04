@@ -14,7 +14,7 @@ Pick the SRE flavor that actually fits and ship a capstone project in it, while 
 
 ## Picking the flavor
 
-By now you've felt the difference between phases 2 (infra/K8s-heavy), 5 (reliability/observability-heavy), and 4 (platform-ish IaC + GitOps). Pick based on what you actually enjoyed:
+By now you've felt the difference between phases 4 (K8s/infra + GitOps), 5 (reliability/observability), and 3 (Terraform/IaC). Pick based on what you actually enjoyed:
 
 - **Infra / Cloud SRE** — networks, clusters, capacity, cost, on-call for infra.
 - **Reliability SRE** — SLOs, error budgets, incident response, perf debugging at the app boundary.

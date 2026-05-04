@@ -1,4 +1,4 @@
-# Phase 2 — Evals
+# Phase 4 — Evals
 
 **Passing bar:** Drills 1–3 pass + at least 2 of 3 break-fixes pass + both whiteboards delivered + **CKA exam passed**. The CKA is the non-negotiable external attestation; without it, the phase is incomplete regardless of other progress. ~10 hours of eval time excluding the CKA itself.
 
@@ -19,15 +19,15 @@ Apply, wait, then `curl https://<host>` returns 200 with a valid cert.
 
 ## Drill 2 — CNI packet trace (target: 30 min)
 
-Pod-to-pod across nodes. Two pods on different nodes (Pi and VPS). Make a request between them and capture:
+Pod-to-pod across nodes. Two pods on different Proxmox VMs. Make a request between them and capture:
 
 1. Source pod's veth — outgoing packet.
 2. cilium_host (or equivalent) — encapsulation in progress.
-3. wg0 — wrapped traffic between nodes.
+3. The cluster overlay interface (cilium_vxlan / cilium_geneve, or the host's eth0 if Cilium is in native-routing mode) — encapsulated or routed traffic between nodes.
 4. Destination veth — packet entering the target pod.
 5. Cilium flow log: `cilium monitor` showing the policy verdict.
 
-**Pass:** five captures + a short note explaining encapsulation (VXLAN vs Geneve vs WireGuard transparent encryption — whichever Cilium is configured for).
+**Pass:** five captures + a short note explaining the dataplane mode (VXLAN vs Geneve vs native routing) and what changes between them.
 
 ## Drill 3 — CKA mock at speed (target: 2 hours)
 
@@ -67,6 +67,6 @@ Explain the responsibilities of each, where they overlap, and where Cilium's eBP
 
 - **CKA exam pass.** Schedule in week 1, sit in week 6. This is the phase's defining proof point.
 
-## Retention check (schedule for 2026-08-25)
+## Retention check (schedule for 2026-10-13)
 
 Redo Drill 2 (the CNI packet trace). Networking under K8s is the part most likely to fade.
