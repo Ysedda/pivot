@@ -18,12 +18,12 @@ Ordered by how often the topic comes up in interviews, and so each block builds 
 
 ## 1. Linux & the lab host
 
-- [ ] **1.1 Reinstall Proxmox myself.** Wi-Fi with `wpa_supplicant`, static IP, NAT bridge for guests. Write down each decision in [lab/](lab/): why NAT (bridging over Wi-Fi doesn't work), what `ip_forward` and `MASQUERADE` do, LVM-thin vs ZFS.
-- [ ] **1.2 Incident: the host keeps dropping off the network.** Find the causes from the logs (`journalctl -b -1`, `iw`, `logind.conf`), fix them, write [postmortem #1](postmortems/).
-- [ ] **1.3 Processes and signals.** SIGTERM vs SIGKILL, exit codes 143/137, zombies, the PID 1 problem. 🐹 Start `app/`: an HTTP server that drains in-flight requests on SIGTERM, with a test. (go-tdd chapters first: pointers & errors, maps, dependency injection.)
-- [ ] **1.4 systemd.** Write a unit for the Go service: restart policy, journald, `systemctl status` and `journalctl -u` reading.
-- [ ] **1.5 Troubleshooting method.** USE (utilization, saturation, errors) per resource. Drills with `stress-ng`: CPU hog, memory leak to OOM kill, disk full, I/O saturation. Claude breaks, I find it, timed.
-- [ ] **1.6 Hardening on a VM.** Re-run [lab-bootstrap/](lab-bootstrap/) on a cloud-init VM, finish unattended-upgrades and the orchestrator script, prove idempotency.
+- [ ] **[1.1 Reinstall Proxmox myself](units/1.1-proxmox-install.md).** Wi-Fi with `wpa_supplicant`, static IP, NAT bridge for guests. Write down each decision in [lab/](lab/): why NAT (bridging over Wi-Fi doesn't work), what `ip_forward` and `MASQUERADE` do, LVM-thin vs ZFS.
+- [ ] **[1.2 Incident: the host keeps dropping off the network](units/1.2-network-drop-incident.md).** Find the causes from the logs (`journalctl -b -1`, `iw`, `logind.conf`), fix them, write [postmortem #1](postmortems/).
+- [ ] **[1.3 Processes and signals](units/1.3-processes-signals.md).** SIGTERM vs SIGKILL, exit codes 143/137, zombies, the PID 1 problem. 🐹 Start `app/`: an HTTP server that drains in-flight requests on SIGTERM, with a test. (go-tdd chapters first: pointers & errors, maps, dependency injection.)
+- [ ] **[1.4 systemd](units/1.4-systemd.md).** Write a unit for the Go service: restart policy, journald, `systemctl status` and `journalctl -u` reading.
+- [ ] **[1.5 Troubleshooting method](units/1.5-troubleshooting-method.md).** USE (utilization, saturation, errors) per resource. Drills with `stress-ng`: CPU hog, memory leak to OOM kill, disk full, I/O saturation. Claude breaks, I find it, timed.
+- [ ] **[1.6 Hardening on a VM](units/1.6-hardening-vm.md).** Re-run [lab-bootstrap/](lab-bootstrap/) on a cloud-init VM, finish unattended-upgrades and the orchestrator script, prove idempotency.
 
 ## 2. Networking
 

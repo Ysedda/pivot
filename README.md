@@ -16,6 +16,7 @@ I already run a production Kubernetes platform at work (OpenTofu, Argo CD, Cloud
 | Path | What |
 | --- | --- |
 | [ROADMAP.md](ROADMAP.md) | All units, by block, with what "done" means for each |
+| [units/](units/) | Per unit: what to read, exercises, build, break, explain |
 | [baseline/](baseline/) | Where I started (gap check, 2026-10-30), retaken after blocks 2, 4 and 7 |
 | [lab/](lab/) | The lab: hardware, network design, decisions |
 | [lessons/](lessons/) | What surprised me or bit me, per block |
