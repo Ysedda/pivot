@@ -44,7 +44,7 @@ A burst-friendly learning roadmap toward DevOps / SRE / platform and non-CRUD ba
 
 - Markdown is the source of truth. Tick checkboxes only when the unit is really done (rule 1).
 - Commit messages: Conventional Commits with a gitmoji, like `feat: :lock: 1.6 fail2ban on lab VM`.
-- Trunk-based: short-lived branches, PRs reviewed even by myself.
+- Trunk-based: short-lived branches, PRs reviewed even by myself, for unit work (scripts, configs, `app/` code). Repo structure and docs (roadmap, `units/`, README, lessons, this file) go straight to `main`.
 - No AI attribution lines in commits or PRs.
 
 ## Collaboration mode (how Claude should work with me)
