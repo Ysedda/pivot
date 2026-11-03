@@ -13,8 +13,8 @@ Ordered by how often the topic comes up in interviews, and so each block builds 
 
 - [x] Baseline gap check: [baseline/2026-10-30.md](baseline/2026-10-30.md)
 - [x] New repo, old plan archived (private, local `pivot-v1`)
-- [ ] 5–6 interview stories (situation, task, action, result) from work, anonymized, kept **outside** this repo
-- [ ] CV and LinkedIn headline repositioned: "backend engineer who runs production"
+- [x] 5–6 interview stories (situation, task, action, result) from work, anonymized, kept **outside** this repo
+- [x] CV and LinkedIn headline repositioned: "backend engineer who runs production"
 
 ## 1. Linux & the lab host
 
